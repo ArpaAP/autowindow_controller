@@ -1,4 +1,4 @@
-# submarine_controller
+# autowindow_controller
 
 A new Flutter project.
 
