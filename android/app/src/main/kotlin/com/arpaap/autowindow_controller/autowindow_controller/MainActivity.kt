@@ -1,4 +1,4 @@
-package com.arpaap.submarine_controller.submarine_controller
+package com.arpaap.autowindow_controller.autowindow_controller
 
 import io.flutter.embedding.android.FlutterActivity
 
