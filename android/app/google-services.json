@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "560958735297",
+    "project_id": "auto-window-controller",
+    "storage_bucket": "auto-window-controller.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560958735297:android:1542f814784b217717a540",
+        "android_client_info": {
+          "package_name": "com.arpaap.autowindow.autowindow_controller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560958735297-09c4q61soe6cmr7mj8h4ckrmhsvd62gk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBquhZbUO8vLnekigXIiOwfKIeaoegd6PE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560958735297-09c4q61soe6cmr7mj8h4ckrmhsvd62gk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "560958735297-j6th7620dapd2oc4ll4olj1r3o501vqh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arpaap.autowindow.autowindowController"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

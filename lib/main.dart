@@ -1,7 +1,24 @@
 import 'package:autowindow_controller/pages/home.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final remoteConfig = FirebaseRemoteConfig.instance;
+  await remoteConfig.setConfigSettings(RemoteConfigSettings(
+    fetchTimeout: const Duration(minutes: 1),
+    minimumFetchInterval: const Duration(hours: 1),
+  ));
+
+  await remoteConfig.fetchAndActivate();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -44,8 +61,8 @@ class _RootPageState extends State<RootPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const HomePage(),
-    const HomePage(),
+    const SizedBox(),
+    const SizedBox(),
   ];
 
   @override
