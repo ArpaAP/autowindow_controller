@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
+        decelerationRate: ScrollDecelerationRate.fast,
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 16),
@@ -112,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '온도',
+                            '기온',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,

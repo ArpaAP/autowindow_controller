@@ -1,4 +1,6 @@
+import 'package:autowindow_controller/pages/connection.dart';
 import 'package:autowindow_controller/pages/home.dart';
+import 'package:autowindow_controller/pages/preferences.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,7 +9,9 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   final remoteConfig = FirebaseRemoteConfig.instance;
   await remoteConfig.setConfigSettings(RemoteConfigSettings(
@@ -16,10 +20,6 @@ void main() async {
   ));
 
   await remoteConfig.fetchAndActivate();
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   runApp(const MyApp());
 }
@@ -63,8 +63,8 @@ class _RootPageState extends State<RootPage> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    const SizedBox(),
-    const SizedBox(),
+    const ConnectionPage(),
+    const PreferencesPage(),
   ];
 
   @override
@@ -78,19 +78,27 @@ class _RootPageState extends State<RootPage> {
         ),
         toolbarHeight: 48,
       ),
-      body: PageView(
-        physics: const AlwaysScrollableScrollPhysics(
-          parent: BouncingScrollPhysics(
-            decelerationRate: ScrollDecelerationRate.fast,
-          ),
-        ),
-        controller: pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+      body: Listener(
+        onPointerDown: (_) {
+          FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.focusedChild?.unfocus();
+          }
         },
-        children: _pages,
+        child: PageView(
+          physics: const AlwaysScrollableScrollPhysics(
+            parent: BouncingScrollPhysics(
+              decelerationRate: ScrollDecelerationRate.fast,
+            ),
+          ),
+          controller: pageController,
+          onPageChanged: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+          children: _pages,
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
@@ -100,8 +108,8 @@ class _RootPageState extends State<RootPage> {
               _selectedIndex = index;
               pageController.animateToPage(
                 index,
-                duration: const Duration(milliseconds: 250),
-                curve: Curves.easeOutQuart,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeInOutQuart,
               );
             },
           );
