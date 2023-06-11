@@ -38,6 +38,7 @@ dependencies:
   firebase_core: ^2.13.1
   firebase_remote_config: ^4.2.2
   firebase_analytics: ^10.4.2
+  socket_io_client: ^2.0.2
 
 dev_dependencies:
   flutter_test:

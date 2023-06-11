@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
+import 'modules/socketio.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -20,6 +22,8 @@ void main() async {
   ));
 
   await remoteConfig.fetchAndActivate();
+
+  SocketApi.init();
 
   runApp(const MyApp());
 }
@@ -61,7 +65,7 @@ class _RootPageState extends State<RootPage> {
   final pageController = PageController(initialPage: 0, keepPage: true);
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
+  static final List<Widget> _pages = [
     const HomePage(),
     const ConnectionPage(),
     const PreferencesPage(),
