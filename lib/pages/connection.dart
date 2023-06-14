@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
@@ -13,19 +15,17 @@ class ConnectionPage extends StatefulWidget {
 class _ConnectionPageState extends State<ConnectionPage>
     with AutomaticKeepAliveClientMixin<ConnectionPage> {
   final remoteConfig = FirebaseRemoteConfig.instance;
-  List<String> messages = [];
+  List messages = [];
 
   void onMessage(dynamic data) {
-    print('asdf');
     setState(() {
-      messages.add(data.toString());
+      messages.add(data);
     });
   }
 
   @override
   void initState() {
     super.initState();
-    print('aa');
 
     SocketApi.socket.on('message', onMessage);
   }
@@ -33,7 +33,6 @@ class _ConnectionPageState extends State<ConnectionPage>
   @override
   void dispose() {
     super.dispose();
-    print('dis');
 
     SocketApi.socket.off('message', onMessage);
   }
@@ -47,7 +46,7 @@ class _ConnectionPageState extends State<ConnectionPage>
           child: ListView.builder(
             itemCount: messages.length,
             itemBuilder: (context, index) => ListTile(
-              title: Text(messages[index]), // 메시지 리스트의 각 항목 출력
+              title: Text(jsonEncode(messages[index])), // 메시지 리스트의 각 항목 출력
             ),
           ),
         ),
