@@ -56,7 +56,7 @@ class SocketApi {
   static final SocketApi _socketApi = SocketApi._internal();
 
   static sio.Socket socket = sio.io(
-    'http://localhost:8080',
+    'http://hydro.inft.kr:8080',
     sio.OptionBuilder()
         .setTransports(['websocket'])
         .disableAutoConnect()

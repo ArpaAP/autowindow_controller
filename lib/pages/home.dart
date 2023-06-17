@@ -366,22 +366,24 @@ class _HomePageState extends State<HomePage>
                         side: const BorderSide(color: Colors.white, width: 1),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      title: const Row(
+                      title: Row(
                         children: [
-                          Text(
+                          const Text(
                             '센싱 하드웨어 연결',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: -0.5),
                           ),
-                          Expanded(child: SizedBox()),
+                          const Expanded(child: SizedBox()),
                           Text(
-                            '정상',
+                            SocketApi.socket.connected ? '정상' : '연결 끊김',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
-                              color: Colors.deepPurple,
+                              color: SocketApi.socket.connected
+                                  ? Colors.deepPurple
+                                  : Colors.pink,
                             ),
                           ),
                         ],
@@ -402,22 +404,24 @@ class _HomePageState extends State<HomePage>
                         side: const BorderSide(color: Colors.white, width: 1),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      title: const Row(
+                      title: Row(
                         children: [
-                          Text(
+                          const Text(
                             '액션 하드웨어 연결',
                             style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500,
                                 letterSpacing: -0.5),
                           ),
-                          Expanded(child: SizedBox()),
+                          const Expanded(child: SizedBox()),
                           Text(
-                            '정상',
+                            SocketApi.socket.connected ? '정상' : '연결 끊김',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w500,
-                              color: Colors.deepPurple,
+                              color: SocketApi.socket.connected
+                                  ? Colors.deepPurple
+                                  : Colors.pink,
                             ),
                           ),
                         ],
